@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <link rel="icon" type="image/jpg" href="images/icons/favicon.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lato&display=swap" rel="stylesheet">
+    <title>Les Petits Plats</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html"><img src="images/icons/logo.png" class="logo" alt="Logo les petits plats" /></a>
+        <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES<br>DU QUOTIDIEN, SIMPLES ET DÉLICIEUSES</h1>
+        <img src="images/header-back.jpg" class="back" alt="Background" />
+        <div class="search">
+            <div class="search-container">
+                <input type="search" class="search-txt" placeholder="Rechercher une recette, un ingrédient, ..." />
+                <img src="images/icons/loupe.svg" class="search-btn" alt="Bouton rechercher" />
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="filter">
+            <div class="bouton">
+                <div class="ingredient">
+                    <button class="dropdown-btn">Ingrédients</button>
+                    <div class="dropdown-content">
+                    </div>
+                </div>
+                <div class="devices">
+                    <button class="dropdown-btn">Appareils</button>
+                    <div class="dropdown-content">
+                    </div>
+                </div>
+                <div class="utensils">
+                    <button class="dropdown-btn">Ustensiles</button>
+                    <div class="dropdown-content">
+                    </div>
+                </div>
+            </div>
+            <div class="Nbrecette"></div>
+        </section>
+
+        <section class="tags"></section>
+
+        <section class="recipes-cards"></section>
+
+        <span class="no-result-message"></span>
+    </main>
+    
+    <script src="scripts/page/index.js"></script>
+    <!--script src="scripts/page/index.js"></script>
+    <script src="scripts/utils/"></script-->
+    
+</body>
+
+</html>
