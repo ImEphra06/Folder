@@ -7,7 +7,7 @@
     <link rel="icon" type="image/jpg" href="images/icons/favicon.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lato&family=Manrope&display=swap" rel="stylesheet">
     <title>Les Petits Plats</title>
 </head>
 
@@ -28,20 +28,20 @@
     <main class="main">
         <section class="filter">
             <div class="bouton">
-                <div class="ingredient">
-                    <button class="dropdown-btn">Ingrédients</button>
-                    <div class="dropdown-content">
-                    </div>
+                <div class="ingredients">
+                    <div class="dropdown-btn">Ingrédients</div>
+                    <img src="images/icons/down.svg" class="vectorIngredients" alt="Dérouler la liste">
+                    <div class="dropdown-content-ingredients"></div>                    
                 </div>
-                <div class="devices">
-                    <button class="dropdown-btn">Appareils</button>
-                    <div class="dropdown-content">
-                    </div>
+                <div class="appliances">
+                    <div class="dropdown-btn">Appareils</div>
+                    <img src="images/icons/down.svg" class="vectorAppliances" alt="Dérouler la liste">
+                    <div class="dropdown-content-appliances"></div>                     
                 </div>
-                <div class="utensils">
-                    <button class="dropdown-btn">Ustensiles</button>
-                    <div class="dropdown-content">
-                    </div>
+                <div class="ustensils">
+                    <div class="dropdown-btn">Ustensiles</div>
+                    <img src="images/icons/down.svg" class="vectorUstensils" alt="Dérouler la liste">
+                    <div class="dropdown-content-ustensils"></div>                     
                 </div>
             </div>
             <div class="Nbrecette"></div>
@@ -55,9 +55,9 @@
     </main>
     
     <script src="scripts/page/index.js"></script>
-    <!--script src="scripts/page/index.js"></script>
-    <script src="scripts/utils/"></script-->
-    
+    <script src="scripts/utils/ingredient.js"></script>
+    <script src="scripts/utils/ustensils.js"></script>
+    <script src="scripts/utils/appliances.js"></script>
 </body>
 
 </html>
