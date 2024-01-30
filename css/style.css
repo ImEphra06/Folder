@@ -110,16 +110,21 @@ main {
 }
 
 .ingredients, .appliances, .ustensils {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: #FFFFFF;
     width: 195px;
     height: 56px;
     padding: 17px 16px;
     border-radius: 11px;
-    cursor: pointer;
     position: relative;
+}
+
+#ingredientBtn, #applianceBtn, #ustensilBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin: 0;
 }
 
 .dropdown-btn {
@@ -150,15 +155,46 @@ main {
     width: 195px;
     height: 215px;
     overflow: auto;
+    scrollbar-width: 1px;
+}
+
+.search-filter {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin: 0;
+}
+
+.search-filter-txt {
+    width: 163px;
+    height: 36px;
+    margin: 0px 15px;
+    padding-inline-start: 5px;
+    padding-right: 28px;
+    border: 1px solid #C6C6C6;
+    border-radius: 2px;
+}
+
+.search-filter-btn {
+    width: 15px;
+    height: 14px;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#insistanteContent {
+    margin: 15px 0px 21px;
+    padding: 5px 0px;
+    background-color: #FFD15B;
 }
 
 .content {
     display: flex;
     margin: 6px 0px 6px 16px;
-}
-
-.content:hover {
-    background-color: #ffd15b;
+    text-transform: capitalize;
 }
 
 .show {

@@ -28,22 +28,52 @@
     <main class="main">
         <section class="filter">
             <div class="bouton">
+
                 <div class="ingredients">
-                    <div class="dropdown-btn">Ingrédients</div>
-                    <img src="images/icons/down.svg" class="vectorIngredients" alt="Dérouler la liste">
-                    <div class="dropdown-content-ingredients"></div>                    
+                    <div id="ingredientBtn">
+                        <div class="dropdown-btn">Ingrédients</div>
+                        <img src="images/icons/down.svg" class="vectorIngredients" alt="Dérouler la liste">
+                    </div>                    
+                    <div class="dropdown-content-ingredients">
+                        <div class="search-filter">
+                            <input type="search" class="search-filter-txt" />
+                            <img src="images/icons/loupe_filter.svg" class="search-filter-btn" alt="Bouton rechercher" />
+                        </div>
+                        <div id="insistanteContent"></div>
+                        <div id="ingredientContainer"></div>
+                    </div>                    
                 </div>
+
                 <div class="appliances">
-                    <div class="dropdown-btn">Appareils</div>
-                    <img src="images/icons/down.svg" class="vectorAppliances" alt="Dérouler la liste">
-                    <div class="dropdown-content-appliances"></div>                     
+                    <div id="applianceBtn">
+                        <div class="dropdown-btn">Appareils</div>
+                        <img src="images/icons/down.svg" class="vectorAppliances" alt="Dérouler la liste">
+                    </div>
+                    <div class="dropdown-content-appliances">
+                        <div class="search-filter">
+                            <input type="search" class="search-filter-txt" />
+                            <img src="images/icons/loupe_filter.svg" class="search-filter-btn" alt="Bouton rechercher" />
+                        </div>
+                        <div id="applianceContainer"></div>
+                    </div>                     
                 </div>
+
                 <div class="ustensils">
-                    <div class="dropdown-btn">Ustensiles</div>
-                    <img src="images/icons/down.svg" class="vectorUstensils" alt="Dérouler la liste">
-                    <div class="dropdown-content-ustensils"></div>                     
+                    <div id="ustensilBtn">
+                        <div class="dropdown-btn">Ustensiles</div>
+                        <img src="images/icons/down.svg" class="vectorUstensils" alt="Dérouler la liste">
+                    </div>
+                    <div class="dropdown-content-ustensils">
+                        <div class="search-filter">
+                            <input type="search" class="search-filter-txt" />
+                            <img src="images/icons/loupe_filter.svg" class="search-filter-btn" alt="Bouton rechercher" />
+                        </div>
+                        <div id="ustensilContainer"></div>
+                    </div>                 
                 </div>
+
             </div>
+
             <div class="Nbrecette"></div>
         </section>
 
