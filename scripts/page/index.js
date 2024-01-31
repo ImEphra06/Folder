@@ -59,6 +59,7 @@ function displayIngredients() {
         // Ajouter un gestionnaire d'événements au clic sur chaque élément
         ingredientItem.addEventListener('click', () => {
             moveIngredientToInsistante(ingredientItem);
+            createTag(ingredient);
         });
     });
 }

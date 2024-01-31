@@ -34,8 +34,8 @@ header {
 }
 
 header .logo {
-    width: 207px;
-    height: 25px;
+    width: 210px;
+    height: 30px;
     position: absolute;
     top: 51px;
     left: 69px;
@@ -99,14 +99,14 @@ main {
 .filter {
     display: flex;
     justify-content: space-between;
-    margin: 20px 0;
+    margin: 20px 0px 20px 102px;
 }
 
 .bouton {
     display: flex;
     flex-direction: row;
     gap: 66px;
-    margin: 0px 0px 0px 124px;
+    margin: 0;
 }
 
 .ingredients, .appliances, .ustensils {
@@ -146,7 +146,7 @@ main {
 
 .dropdown-content-ingredients, .dropdown-content-appliances, .dropdown-content-ustensils {
     position: absolute;
-    top: 100%;  /* Cette valeur peut être ajustée en fonction de vos besoins */
+    top: 100%;
     left: 0;
     background-color: #f9f9f9;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -155,7 +155,6 @@ main {
     width: 195px;
     height: 215px;
     overflow: auto;
-    scrollbar-width: 1px;
 }
 
 .search-filter {
@@ -194,6 +193,7 @@ main {
 .content {
     display: flex;
     margin: 6px 0px 6px 16px;
+    cursor: pointer;
     text-transform: capitalize;
 }
 
@@ -206,7 +206,38 @@ main {
 
 
 /***** Tags *****/
+.tags {
+    display: none;
+    flex-wrap: wrap;
+    margin: 0px 102px 8px 102px;
+    gap: 3px;
+}
 
+.tagsContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 17px 18px;
+    width: 203px;
+    height: 53px;
+    border-radius: 10px;
+    background-color: #FFD15B;
+    margin: 0;
+}
+
+.tagName {
+    font-family: "manrope", sans-serif;
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+}
+
+.tagClose {
+    margin: 0;
+    cursor: pointer;
+}
 
 /***** Cards *****/
 .recipes-cards {
@@ -214,7 +245,7 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 35px 102px 135px 102px;
+    margin: 35px 100px 135px 102px;
     gap: 4px;
 }
 
@@ -223,7 +254,7 @@ main {
     flex-direction: column;
     border-radius: 21px;
     background-color: white;
-    margin-bottom: 66px;
+    margin: 0px 0px 66px 0px;
     width: 30%;
     position: relative;
 }
