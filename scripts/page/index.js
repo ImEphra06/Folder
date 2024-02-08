@@ -29,6 +29,10 @@ function filterRecipes () {
     displayUstensils();
 }
 
+function filterBySearch(_recipes) {
+
+}
+
 function filterByIngredients(_recipes) {
 
 }
@@ -41,11 +45,11 @@ function filterByUstensils(_recipes) {
 
 }
 
-function filterBySearch(_recipes) {
 
-}
 
 /**** Remplir la liste des ingrédients *****/
+let movedIngredients = [];
+
 function displayIngredients() {
     const dropdownContent = document.getElementById('ingredientContainer');
     dropdownContent.innerHTML = '';
@@ -59,7 +63,7 @@ function displayIngredients() {
         // Ajouter un gestionnaire d'événements au clic sur chaque élément
         ingredientItem.addEventListener('click', () => {
             moveIngredientToInsistante(ingredientItem);
-            createTag(ingredient);
+            createTag(ingredientItem.textContent);
         });
     });
 }
@@ -67,14 +71,20 @@ function displayIngredients() {
 function moveIngredientToInsistante(ingredientItem) {
     const insistanteContent = document.getElementById('insistanteContent');
 
-    // Cloner l'élément
-    const clonedIngredientItem = ingredientItem.cloneNode(true);
+    // Vérifier si l'élément n'a pas déjà été déplacé
+    if (!movedIngredients.includes(ingredientItem)) {
+        // Cloner l'élément
+        const clonedIngredientItem = ingredientItem.cloneNode(true);
 
-    // Ajouter le clone à "insistanteContent"
-    insistanteContent.appendChild(clonedIngredientItem);
+        // Ajouter le clone à "insistanteContent"
+        insistanteContent.appendChild(clonedIngredientItem);
 
-    // Supprimer l'élément de la liste
-    ingredientItem.remove();
+        // Ajouter l'élément à la liste des déplacés
+        movedIngredients.push(ingredientItem);
+
+        // Supprimer l'élément de la liste
+        ingredientItem.remove();
+    }
 }
 
 // Afficher/masquer la liste des ingrédients
