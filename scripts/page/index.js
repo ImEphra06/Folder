@@ -49,10 +49,12 @@ function filterByUstensils(_recipes) {
 
 /**** Remplir la liste des ingrédients *****/
 let movedIngredients = [];
+let removedIngredients = [];
+
 
 function displayIngredients() {
-    const dropdownContent = document.getElementById('ingredientContainer');
-    dropdownContent.innerHTML = '';
+    
+    const dropdownContent = document.getElementById('ingredientContainer');dropdownContent.innerHTML = '';
 
     ingredients.forEach(ingredient => {
         const ingredientItem = document.createElement('div');
@@ -69,14 +71,12 @@ function displayIngredients() {
 }
 
 function moveIngredientToInsistante(ingredientItem) {
-    const insistanteContent = document.getElementById('insistanteContent');
-
     // Vérifier si l'élément n'a pas déjà été déplacé
     if (!movedIngredients.includes(ingredientItem)) {
-        // Cloner l'élément
         const clonedIngredientItem = ingredientItem.cloneNode(true);
 
         // Ajouter le clone à "insistanteContent"
+        const insistanteContent = document.getElementById('insistanteContentIngredient');
         insistanteContent.appendChild(clonedIngredientItem);
 
         // Ajouter l'élément à la liste des déplacés
@@ -84,8 +84,33 @@ function moveIngredientToInsistante(ingredientItem) {
 
         // Supprimer l'élément de la liste
         ingredientItem.remove();
+
+        // Vérifier si insistanteContent est vide
+        if (insistanteContent.children.length > 0) {
+            insistanteContent.style.display = 'block';
+        }
     }
 }
+
+/*function moveInsistanteToIngredient(ingredientItem) {
+    // Vérifier si l'élément n'a pas déjà été déplacé
+    if (!removedIngredients.includes(ingredientItem)) {
+        const clonedIngredientItem = ingredientItem.cloneNode(true);
+
+        // Ajouter le clone à "ingredientContainer"
+        dropdownContent.appendChild(clonedIngredientItem);
+
+        // Ajouter l'élément à la liste des déplacés
+        removedIngredients.push(ingredientItem);
+
+        // Supprimer l'élément de la liste
+        ingredientItem.remove();
+    }
+}
+
+insistanteContent.addEventListener('click', () => {
+    moveInsistanteToIngredient(ingredientItem);
+});*/
 
 // Afficher/masquer la liste des ingrédients
 function toggleIngredients() {
@@ -101,7 +126,22 @@ document.getElementById('ingredientBtn').addEventListener('click', () => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 /***** Remplir la liste des appareils *****/
+let movedAppliances = [];
+let removedAppliances = [];
+
 function displayAppliances() {
     const dropdownContent = document.getElementById('applianceContainer');
     dropdownContent.innerHTML = '';
@@ -111,7 +151,35 @@ function displayAppliances() {
         applianceItem.textContent = appliance;
         applianceItem.className = 'content';
         dropdownContent.appendChild(applianceItem);
+
+        // Ajouter un gestionnaire d'événements au clic sur chaque élément
+        applianceItem.addEventListener('click', () => {
+            moveApplianceToInsistante(applianceItem);
+            createTag(applianceItem.textContent);
+        });
     });
+}
+
+function moveApplianceToInsistante(applianceItem) {
+    // Vérifier si l'élément n'a pas déjà été déplacé
+    if (!movedAppliances.includes(applianceItem)) {
+        const clonedApplianceItem = applianceItem.cloneNode(true);
+
+        // Ajouter le clone à "insistanteContent"
+        const insistanteContent = document.getElementById('insistanteContentAppliance');
+        insistanteContent.appendChild(clonedApplianceItem);
+
+        // Ajouter l'élément à la liste des déplacés
+        movedAppliances.push(applianceItem);
+
+        // Supprimer l'élément de la liste
+        applianceItem.remove();
+
+        // Vérifier si insistanteContent est vide
+        if (insistanteContent.children.length > 0) {
+            insistanteContent.style.display = 'block';
+        }
+    }
 }
 
 // Afficher/masquer la liste des appareils
@@ -129,6 +197,9 @@ document.getElementById('applianceBtn').addEventListener('click', () => {
 
 
 /***** Remplir la liste des ustensiles *****/
+let movedUstencils = [];
+let removedUstencils = [];
+
 function displayUstensils() {
     const dropdownContent = document.getElementById('ustensilContainer');
     dropdownContent.innerHTML = '';
@@ -138,7 +209,35 @@ function displayUstensils() {
         ustensilItem.textContent = ustensil;
         ustensilItem.className = 'content';
         dropdownContent.appendChild(ustensilItem);
+
+        // Ajouter un gestionnaire d'événements au clic sur chaque élément
+        ustensilItem.addEventListener('click', () => {
+            moveUstensilToInsistante(ustensilItem);
+            createTag(ustensilItem.textContent);
+        });
     });
+}
+
+function moveUstensilToInsistante(ustensilItem) {
+    // Vérifier si l'élément n'a pas déjà été déplacé
+    if (!movedUstencils.includes(ustensilItem)) {
+        const clonedUstensilItem = ustensilItem.cloneNode(true);
+
+        // Ajouter le clone à "insistanteContent"
+        const insistanteContent = document.getElementById('insistanteContentUstensil');
+        insistanteContent.appendChild(clonedUstensilItem);
+
+        // Ajouter l'élément à la liste des déplacés
+        movedUstencils.push(ustensilItem);
+
+        // Supprimer l'élément de la liste
+        ustensilItem.remove();
+
+        // Vérifier si insistanteContent est vide
+        if (insistanteContent.children.length > 0) {
+            insistanteContent.style.display = 'block';
+        }
+    }
 }
 
 // Afficher/masquer la liste des ustensiles

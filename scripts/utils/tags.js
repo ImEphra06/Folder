@@ -25,3 +25,5 @@ function createTag(tagName) {
         tagsContent.style.display = "none";
     }
 }
+
+// Création d'une fonction closeTag puis l'ajouter à l'évènement click de moveInsistanteToIngredient
