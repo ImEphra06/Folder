@@ -177,7 +177,7 @@ main {
     margin: 0;
 }
 
-.search-filter-txt {
+.search-ingredient-txt, .search-appliance-txt, .search-ustensil-txt  {
     width: 163px;
     height: 36px;
     margin: 0px 15px;
@@ -187,12 +187,12 @@ main {
     border-radius: 2px;
 }
 
-.search-filter-btn {
+.search-ingredient-btn, .search-appliance-btn, .search-ustensil-btn {
     width: 15px;
     height: 14px;
     position: absolute;
     top: 50%;
-    right: 10px;
+    left: 154px;
     transform: translateY(-50%);
     cursor: pointer;
 }
@@ -200,12 +200,12 @@ main {
 #insistanteContentIngredient, #insistanteContentAppliance, #insistanteContentUstensil {
     display: none;
     margin: 15px 0px 21px;
-    padding: 5px 0px;
-    background-color: #FFD15B;
 }
 
-#instanteContent .content:hover {
-    font-weight: 900;
+#insistanteContentIngredient .contentBis, #insistanteContentAppliance .contentBis, #insistanteContentUstensil .contentBis {
+    margin: 0;
+    padding: 5px 0px 5px 16px;
+    background-color: #FFD15B;
 }
 
 .content {

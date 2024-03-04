@@ -27,9 +27,37 @@ function filterRecipes () {
     displayUstensils();
 }
 
+/***** CHAMP DE RECHERCHE *****/
 function filterBySearch(_recipes) {
+    const searchInput = document.querySelector(".search-txt");
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    if (searchTerm.length < 3) {
+        return _recipes;
+    }
 
+    return _recipes.filter(recipe => {
+        const titleMatch = recipe.name.toLowerCase().includes(searchTerm);
+        const ingredientsMatch = recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(searchTerm));
+        const descriptionMatch = recipe.description.toLowerCase().includes(searchTerm);
+
+        return titleMatch || ingredientsMatch || descriptionMatch;
+    });
 }
+
+/*document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.querySelector(".search-txt");
+    const searchBtn = document.querySelector(".search-btn");
+
+    searchInput.addEventListener('keypress', function (event) {
+        if (event.key === 'Enter') {
+            filterRecipes();
+        }
+    });
+
+    searchBtn.addEventListener('click', function () {
+        filterRecipes();
+    });
+});*/
 
 /***** INGREDIENTS *****/
 function filterByIngredients(_recipes) {
@@ -75,6 +103,7 @@ function moveIngredientToInsistante(ingredientItem) {
     // Vérifier si l'élément n'a pas déjà été déplacé
     if (!movedIngredients.includes(ingredientItem)) {
         const clonedIngredientItem = ingredientItem.cloneNode(true);
+        clonedIngredientItem.classList.add('contentBis');
 
         // Ajouter le clone à "insistanteContent"
         const insistanteContent = document.getElementById('insistanteContentIngredient');
@@ -107,6 +136,43 @@ document.getElementById('ingredientBtn').addEventListener('click', () => {
     dropdownContentIngredient.classList.toggle('show');
     vectorIngredients.classList.toggle('rotate-180');
 });
+
+// Recherche d'un ingredient via la barre de recherche
+const searchIngredientInput = document.querySelector('.search-ingredient-txt');
+
+searchIngredientInput.addEventListener('input', function() {
+    const inputValue = this.value.trim().toLowerCase();
+
+    if (inputValue.length >= 3) {
+        const filteredIngredients = ingredients.filter(ingredient => {
+            return ingredient.toLowerCase().startsWith(inputValue);
+        });
+        
+        displayFilteredIngredients(filteredIngredients);
+    } else {
+        displayIngredients();
+    }
+});
+
+// Fonction pour afficher les ingrédients filtrés
+function displayFilteredIngredients(filteredIngredients) {
+    let dropdownContent = document.getElementById('ingredientContainer');
+    dropdownContent.innerHTML = '';
+
+    filteredIngredients.forEach(ingredient => {
+        const ingredientItem = document.createElement('div');
+        ingredientItem.textContent = ingredient;
+        ingredientItem.className = 'content';
+        dropdownContent.appendChild(ingredientItem);
+
+        // Ajouter un gestionnaire d'événements au clic sur chaque élément
+        ingredientItem.addEventListener('click', () => {
+            moveIngredientToInsistante(ingredientItem);
+            createIngredientTag(ingredientItem.textContent);
+            filterRecipes();
+        });
+    });
+}
 
 
 /***** APPLIANCES *****/
@@ -155,6 +221,7 @@ function moveApplianceToInsistante(applianceItem) {
     // Vérifier si l'élément n'a pas déjà été déplacé
     if (!movedAppliances.includes(applianceItem)) {
         const clonedApplianceItem = applianceItem.cloneNode(true);
+        clonedApplianceItem.classList.add('contentBis');
 
         // Ajouter le clone à "insistanteContent"
         const insistanteContent = document.getElementById('insistanteContentAppliance');
@@ -187,6 +254,43 @@ document.getElementById('applianceBtn').addEventListener('click', () => {
     dropdownContentAppliances.classList.toggle('show');
     vectorAppliances.classList.toggle('rotate-180');
 });
+
+// Recherche d'un appareil via la barre de recherche
+const searchApplianceInput = document.querySelector('.search-appliance-txt');
+
+searchApplianceInput.addEventListener('input', function() {
+    const inputValue = this.value.trim().toLowerCase();
+
+    if (inputValue.length >= 3) {
+        const filteredAppliances = appliances.filter(appliance => {
+            return appliance.toLowerCase().startsWith(inputValue);
+        });
+        
+        displayFilteredAppliances(filteredAppliances);
+    } else {
+        displayAppliances();
+    }
+});
+
+// Fonction pour afficher les appareils filtrés
+function displayFilteredAppliances(filteredAppliances) {
+    const dropdownContent = document.getElementById('applianceContainer');
+    dropdownContent.innerHTML = '';
+
+    filteredAppliances.forEach(appliance => {
+        const applianceItem = document.createElement('div');
+        applianceItem.textContent = appliance;
+        applianceItem.className = 'content';
+        dropdownContent.appendChild(applianceItem);
+
+        // Ajouter un gestionnaire d'événements au clic sur chaque élément
+        applianceItem.addEventListener('click', () => {
+            moveApplianceToInsistante(applianceItem);
+            createApplianceTag(applianceItem.textContent);
+            filterRecipes();
+        });
+    });
+}
 
 
 /***** USTENSILS *****/
@@ -235,6 +339,7 @@ function moveUstensilToInsistante(ustensilItem) {
     // Vérifier si l'élément n'a pas déjà été déplacé
     if (!movedUstensils.includes(ustensilItem)) {
         const clonedUstensilItem = ustensilItem.cloneNode(true);
+        clonedUstensilItem.classList.add('contentBis');
 
         // Ajouter le clone à "insistanteContent"
         const insistanteContent = document.getElementById('insistanteContentUstensil');
@@ -267,6 +372,43 @@ document.getElementById('ustensilBtn').addEventListener('click', () => {
     dropdownContentUstensils.classList.toggle('show');
     vectorUstensils.classList.toggle('rotate-180');
 });
+
+// Recherche d'un ustensile via la barre de recherche
+const searchUstensilInput = document.querySelector('.search-ustensil-txt');
+
+searchUstensilInput.addEventListener('input', function() {
+    const inputValue = this.value.trim().toLowerCase();
+
+    if (inputValue.length >= 3) {
+        const filteredUstensils = ustensils.filter(ustensil => {
+            return ustensil.toLowerCase().startsWith(inputValue);
+        });
+        
+        displayFilteredUstensils(filteredUstensils);
+    } else {
+        displayUstensils();
+    }
+});
+
+// Fonction pour afficher les ustensiles filtrés
+function displayFilteredUstensils(filteredUstensils) {
+    const dropdownContent = document.getElementById('ustensilContainer');
+    dropdownContent.innerHTML = '';
+
+    filteredUstensils.forEach(ustensil => {
+        const ustensilItem = document.createElement('div');
+        ustensilItem.textContent = ustensil;
+        ustensilItem.className = 'content';
+        dropdownContent.appendChild(ustensilItem);
+
+        // Ajouter un gestionnaire d'événements au clic sur chaque élément
+        ustensilItem.addEventListener('click', () => {
+            moveUstensilToInsistante(ustensilItem);
+            createUstensilTag(ustensilItem.textContent);
+            filterRecipes();
+        });
+    });
+}
 
 
 /***** AFFICHAGE NOMBRE DE RECETTES *****/
