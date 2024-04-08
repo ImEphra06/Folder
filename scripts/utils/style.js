@@ -9,7 +9,7 @@ function setupIngredientDropdown(ctx) {
     
     ctx.btn.addEventListener("click", () => {
         ctx.list.style.display = (ctx.list.style.display === "block") ? "none" : "block";
-        ctx.container.classList.toggle("ingredients-close", ctx.list.style.display === "none");
+        ctx.container.classList.toggle("filter-close", ctx.list.style.display === "none");
     });
 }
 
@@ -20,7 +20,7 @@ function setupApplianceDropdown(cty) {
     
     cty.btn.addEventListener("click", () => {
         cty.list.style.display = (cty.list.style.display === "block") ? "none" : "block";
-        cty.container.classList.toggle("appliances-close", cty.list.style.display === "none");
+        cty.container.classList.toggle("filter-close", cty.list.style.display === "none");
     });
 }
 
@@ -31,7 +31,7 @@ function setupUstensilDropdown(ctz) {
     
     ctz.btn.addEventListener("click", () => {
         ctz.list.style.display = (ctz.list.style.display === "block") ? "none" : "block";
-        ctz.container.classList.toggle("ustensils-close", ctz.list.style.display === "none");
+        ctz.container.classList.toggle("filter-close", ctz.list.style.display === "none");
     });
 }
 

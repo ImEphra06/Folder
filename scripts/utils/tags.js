@@ -1,6 +1,5 @@
-function createIngredientTag(tagName) {
+function createTag(tagName, type) {
     const tags = document.querySelector('.tags')
-    tags.style.display = 'flex';
 
     const tagsContent = document.createElement('article');
     tagsContent.classList.add('tagsContent');
@@ -19,21 +18,18 @@ function createIngredientTag(tagName) {
     tagsContent.appendChild(tagClose);
 
     // Ajouter un gestionnaire d'événements pour supprimer le tag au clic sur l'icône de fermeture
-    tagClose.addEventListener('click', closeTag);
-
-    function closeTag() {
-        const insistanteContent = document.getElementById('insistanteContentIngredient');
+    tagClose.addEventListener('click', () => {
+        const insistanteContent = document.getElementById('insistanteContent' + type);
 				const currentInsistanceElement = Array.from(insistanteContent.children).find(item => item.textContent === tagsContent.textContent);
         insistanteContent.removeChild(currentInsistanceElement);
 
 				tagsContent.parentElement.removeChild(tagsContent);
 				filterRecipes();
-    }
+		});
 }
 
 function createApplianceTag(tagName) {
   const tags = document.querySelector('.tags')
-  tags.style.display = 'flex';
 
   const tagsContent = document.createElement('article');
   tagsContent.classList.add('tagsContent');
