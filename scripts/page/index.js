@@ -60,6 +60,20 @@ function moveItemToInsistante(item, moved, type, label) {
         // Ajouter le clone à "insistanteContent"
         const insistanteContent = document.getElementById('insistanteContent' + type);
         insistanteContent.appendChild(cloned);
+        const insistanteClose = document.createElement('img');
+        insistanteClose.src = 'images/icons/tags_close.svg';
+        insistanteClose.classList.add('insistantClose');
+        insistanteClose.alt = 'Supprimer l élément';
+        cloned.appendChild(insistanteClose);
+
+        insistanteClose.addEventListener('click', () => {
+            const tagsContent = document.querySelector('.tagsContent');
+            const currentInsistanceElement = Array.from(tagsContent.children).find(item => item.textContent === insistanteContent.textContent);
+            tagsContent.removeChild(currentInsistanceElement);
+      
+            insistanteContent.parentElement.removeChild(insistanteContent);
+            filterRecipes();
+        });
 
         // Ajouter l'élément à la liste des déplacés
         moved.push(item);
@@ -72,7 +86,6 @@ function moveItemToInsistante(item, moved, type, label) {
         content.style.display = "none";
 		const vector = document.querySelector('.vector' + type)
         vector.classList.toggle('rotate-180');
-        content.classList.toggle('show');
 
         // Ajouter la classe 'filter-close' à filterContainer
         const filterContainer = document.querySelector('.' + label);
@@ -112,6 +125,9 @@ function displayIngredients() {
 	fillFilterList("ingredient", "Ingredient", ingredients, "ingredients", movedIngredients);
 }
 
+function extractIngredients (_recipes) {
+    ctx.ingredients = []
+}
 
 /***** APPLIANCES *****/
 function filterByAppliances(_recipes) {
@@ -273,7 +289,7 @@ function initReferences() {
         const inputValue = this.value.trim().toLowerCase();
 
         if (inputValue.length >= 3) {
-            const filteredIngredients = ingredients.filter(ingredient => {
+            const filteredIngredients = ctx.ingredients.filter(ingredient => {
                 return ingredient.toLowerCase().startsWith(inputValue);
             });
 
@@ -310,33 +326,4 @@ function initReferences() {
             displayUstensils();
         }
     });
-
-    // Afficher le menu déroulant et touner la flèche au click
-    document.getElementById('ingredientBtn').addEventListener('click', () => {
-        displayIngredients();
-        dropdownContentIngredient.classList.toggle('show');
-        vectorIngredients.classList.toggle('rotate-180');
-    });
-
-    document.getElementById('applianceBtn').addEventListener('click', () => {
-        displayAppliances();
-        dropdownContentAppliances.classList.toggle('show');
-        vectorAppliances.classList.toggle('rotate-180');
-    });
-
-    document.getElementById('ustensilBtn').addEventListener('click', () => {
-        displayUstensils();
-        dropdownContentUstensils.classList.toggle('show');
-        vectorUstensils.classList.toggle('rotate-180');
-    });
 }
-
-async function init() {
-	initReferences();
-    await getRecipes();
-    filterRecipes();
-}
-
-window.onload = async function () {
-    await init();
-};

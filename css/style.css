@@ -139,7 +139,7 @@ main {
     margin: 0;
 }
 
-.vectorIngredients, .vectorAppliances, .vectorUstensils {
+.vectorIngredient, .vectorAppliance, .vectorUstensil {
     width: 17px;
     height: 7px;
     margin: 0;
@@ -163,7 +163,7 @@ main {
     overflow: auto;
 }
 
-.show {
+#ingredientContainer, #applianceContainer, #ustensilContainer {
     display: block;
     font-family: 'manrope', sans-serif;
     font-weight: 400;
@@ -200,14 +200,26 @@ main {
 #insistanteContentIngredient, #insistanteContentAppliance, #insistanteContentUstensil {
     display: none;
     margin: 15px 0px 21px;
+    font-family: 'manrope', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 #insistanteContentIngredient .contentBis, #insistanteContentAppliance .contentBis, #insistanteContentUstensil .contentBis {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
     margin: 0;
-    padding: 5px 0px 5px 16px;
+    padding: 5px 10px 5px 16px;
     background-color: #FFD15B;
 }
 
+.insistantClose {
+    margin: 2px 0px 0px 0px;
+    width: 14px;
+    height: 13px;
+}
 .content {
     display: flex;
     margin: 6px 0px 6px 16px;
