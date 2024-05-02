@@ -32,8 +32,8 @@ function filterBySearch() {
 }*****/
 
 /***** FONCTIONS GENERALES UTILISEES POUR LES 3 FILTRES *****/
-function fillFilterList(prefix, type, data, label, moved) {
-    const dropdownContent = document.getElementById(prefix + 'Container');
+function fillFilterList(data, label, moved) {
+    const dropdownContent = document.getElementById(label + 'Container');
 	dropdownContent.innerHTML = '';
 
     data.forEach(item => {
@@ -44,21 +44,21 @@ function fillFilterList(prefix, type, data, label, moved) {
 
         // Ajouter un gestionnaire d'événements au clic sur chaque élément
         div.addEventListener('click', () => {
-			moveItemToInsistante(div, moved, type, label);
-            createTag(div.textContent, type);
+			moveItemToInsistante(div, moved, label);
+            createTag(div.textContent, label);
             filterRecipes();
         });
     });
 }
 
-function moveItemToInsistante(item, moved, type, label) {
+function moveItemToInsistante(item, moved, label) {
     // Vérifier si l'élément n'a pas déjà été déplacé
-    if (!moved.includes(item)) {
+    if (!Array.from(moved).includes(item)) {
         const cloned = item.cloneNode(true);
         cloned.classList.add('contentBis');
 
         // Ajouter le clone à "insistanteContent"
-        const insistanteContent = document.getElementById('insistanteContent' + type);
+        const insistanteContent = document.getElementById('insistanteContent' + label);
         insistanteContent.appendChild(cloned);
         const insistanteClose = document.createElement('img');
         insistanteClose.src = 'images/icons/tags_close.svg';
@@ -67,34 +67,22 @@ function moveItemToInsistante(item, moved, type, label) {
         cloned.appendChild(insistanteClose);
 
         insistanteClose.addEventListener('click', () => {
-            const tagsContent = document.querySelector('.tagsContent');
-            const currentInsistanceElement = Array.from(tagsContent.children).find(item => item.textContent === insistanteContent.textContent);
-            tagsContent.removeChild(currentInsistanceElement);
-      
-            insistanteContent.parentElement.removeChild(insistanteContent);
+			closeList(label);
+            const insistanteContent = document.getElementById(`insistanteContent${label}`);
+            const tagsContent = Array.from(document.querySelectorAll('.tagsContent')).find(item => item.textContent === insistanteContent.textContent);
+            insistanteContent.removeChild(insistanteClose.parentElement);
+            tagsContent.parentElement.removeChild(tagsContent);
             filterRecipes();
         });
 
-        // Ajouter l'élément à la liste des déplacés
-        moved.push(item);
-
-        // Supprimer l'élément de la liste
-        item.remove();
-
-        // Fermer la liste des ingrédients
-        const content = document.querySelector('.dropdown-content-' + label);
-        content.style.display = "none";
-		const vector = document.querySelector('.vector' + type)
-        vector.classList.toggle('rotate-180');
-
-        // Ajouter la classe 'filter-close' à filterContainer
-        const filterContainer = document.querySelector('.' + label);
-        filterContainer.classList.add('filter-close');
+        closeList(label);
 
         // Vérifier si insistanteContent est vide
         if (insistanteContent.children.length > 0) {
             insistanteContent.style.display = 'block';
         }
+
+        filterRecipes();
     }
 }
 
@@ -102,7 +90,7 @@ function moveItemToInsistante(item, moved, type, label) {
 /***** INGREDIENTS *****/
 function filterByIngredients(_recipes) {
     // Récupérer les noms des ingrédients sélectionnés dans insistanteContentIngredient
-    const selectedIngredients = Array.from(document.querySelectorAll('#insistanteContentIngredient .content')).map(item => item.textContent.trim().toLocaleLowerCase());
+    const selectedIngredients = Array.from(document.querySelectorAll('#insistanteContentingredients .content')).map(item => item.textContent.trim().toLocaleLowerCase());
     if (selectedIngredients.length === 0) {
         return(_recipes);
     }
@@ -118,21 +106,15 @@ function filterByIngredients(_recipes) {
 // Remplir la liste des ingrédients
 let dropdownContentIngredient = null;
 let vectorIngredients = null;
-let movedIngredients = [];
-let removedIngredients = [];
 
 function displayIngredients() {
-	fillFilterList("ingredient", "Ingredient", ingredients, "ingredients", movedIngredients);
-}
-
-function extractIngredients (_recipes) {
-    ctx.ingredients = []
+	fillFilterList(ctx.ingredients, "ingredients", document.getElementById(`insistanteContentingredients`).children);
 }
 
 /***** APPLIANCES *****/
 function filterByAppliances(_recipes) {
     // Récupérer les noms des appareils sélectionnés dans insistanteContentAppliance
-    const selectedAppliances = Array.from(document.querySelectorAll('#insistanteContentAppliance .content')).map(item => item.textContent.trim().toLocaleLowerCase());
+    const selectedAppliances = Array.from(document.querySelectorAll('#insistanteContentappliances .content')).map(item => item.textContent.trim().toLocaleLowerCase());
     if (selectedAppliances.length === 0) {
         return _recipes;
     }
@@ -148,18 +130,16 @@ function filterByAppliances(_recipes) {
 // Remplir la liste des appareils
 let dropdownContentAppliances = null;
 let vectorAppliances = null;
-let movedAppliances = [];
-let removedAppliances = [];
 
 function displayAppliances() {
-	fillFilterList("appliance", "Appliance", appliances, "appliances", movedAppliances);
+	fillFilterList(ctx.appliances, "appliances", document.getElementById(`insistanteContentappliances`).children);
 }
 
 
 /***** USTENSILS *****/
 function filterByUstensils(_recipes) {
     // Récupérer les noms des ustensiles sélectionnés dans insistanteContentUstensil
-    const selectedUstensils = Array.from(document.querySelectorAll('#insistanteContentUstensil .content')).map(item => item.textContent.trim().toLocaleLowerCase());
+    const selectedUstensils = Array.from(document.querySelectorAll('#insistanteContentustensils .content')).map(item => item.textContent.trim().toLocaleLowerCase());
     if (selectedUstensils.length === 0) {
         return _recipes;
     }
@@ -175,11 +155,9 @@ function filterByUstensils(_recipes) {
 // Remplir la liste des ustensiles
 let dropdownContentUstensils = null;
 let vectorUstensils = null;
-let movedUstensils = [];
-let removedUstensils = [];
 
 function displayUstensils() {
-	fillFilterList("ustensil", "Ustensil", ustensils, "ustensils", movedUstensils);
+	fillFilterList(ctx.ustensils, "ustensils", document.getElementById(`insistanteContentustensils`).children);
 }
 
 
@@ -290,10 +268,10 @@ function initReferences() {
 
         if (inputValue.length >= 3) {
             const filteredIngredients = ctx.ingredients.filter(ingredient => {
-                return ingredient.toLowerCase().startsWith(inputValue);
+                return ingredient.toLowerCase().includes(inputValue);
             });
 
-            fillFilterList("ingredient", "Ingredient", filteredIngredients, "ingredients", movedIngredients);
+            fillFilterList(filteredIngredients, "ingredients", document.getElementById(`insistanteContentingredients`).children);
         } else {
             displayIngredients();
         }
@@ -304,10 +282,10 @@ function initReferences() {
 
         if (inputValue.length >= 3) {
             const filteredAppliances = appliances.filter(appliance => {
-                return appliance.toLowerCase().startsWith(inputValue);
+                return appliance.toLowerCase().includes(inputValue);
             });
 
-            fillFilterList("appliance", "Appliance", filteredAppliances, "appliances", movedAppliances);
+            fillFilterList(filteredAppliances, "appliances", document.getElementById(`insistanteContentappliances`).children);
         } else {
             displayAppliances();
         }
@@ -318,10 +296,10 @@ function initReferences() {
 
         if (inputValue.length >= 3) {
             const filteredUstensils = ustensils.filter(ustensil => {
-                return ustensil.toLowerCase().startsWith(inputValue);
+                return ustensil.toLowerCase().includes(inputValue);
             });
 
-            fillFilterList("ustensil", "Ustensil", filteredUstensils, "ustensils", movedUstensils);
+            fillFilterList(filteredUstensils, "ustensils", document.getElementById(`insistanteContentustensils`).children);
         } else {
             displayUstensils();
         }

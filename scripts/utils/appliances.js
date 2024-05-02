@@ -1,24 +1,33 @@
-let appliances = [];
-
 function extractAppliances(_recipes) {
-    appliances = [];
+    ctx.appliances = [];
 
     for (let i = 0; i < _recipes.length; i++) {
-        const recipeAppliance = _recipes[i].appliance;
-        if (recipeAppliance) {
+        const recipeAppliances = _recipes[i].appliance;
+
+        for (let j = 0; j < recipeAppliances.length; j++) {
             let found = false;
-            const currentAppliance = recipeAppliance.toLowerCase();
-            for (let j = 0; j < appliances.length; j++) {
-                if (appliances[j].toLowerCase() === currentAppliance) {
+            const currentAppliance = recipeAppliances.toLowerCase();
+            
+            for (let j = 0; j < ctx.appliances.length; j++) {
+                if (ctx.appliances[j].toLowerCase() === currentAppliance) {
                     found = true;
                     break;
                 }
             }
+
             if (!found) {
-                appliances.push(recipeAppliance);
+                const movedAppliances = document.getElementById(`insistanteContentappliances`).children;
+                for(let k = 0; k < movedAppliances.length; k++) {
+                    if (movedAppliances[k].textContent.toLowerCase() === currentAppliance) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!found) {
+                ctx.appliances.push(currentAppliance);
             }
         }
     }
 }
-
-console.log(appliances);

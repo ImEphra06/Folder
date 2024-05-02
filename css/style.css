@@ -124,7 +124,7 @@ main {
 	border-bottom-left-radius: 10px;
 }
 
-#ingredientBtn, #applianceBtn, #ustensilBtn {
+#ingredientsBtn, #appliancesBtn, #ustensilsBtn {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -139,15 +139,15 @@ main {
     margin: 0;
 }
 
-.vectorIngredient, .vectorAppliance, .vectorUstensil {
+.filterArrow {
     width: 17px;
     height: 7px;
     margin: 0;
+    transition: transform 0.5s ease;
 }
 
 .rotate-180 {
     transform: rotate(180deg);
-    transition: transform 0.5s ease;
 }
 
 .dropdown-content-ingredients, .dropdown-content-appliances, .dropdown-content-ustensils {
@@ -163,7 +163,7 @@ main {
     overflow: auto;
 }
 
-#ingredientContainer, #applianceContainer, #ustensilContainer {
+#ingredientsContainer, #appliancesContainer, #ustensilsContainer {
     display: block;
     font-family: 'manrope', sans-serif;
     font-weight: 400;
@@ -177,7 +177,7 @@ main {
     margin: 0;
 }
 
-.search-ingredient-txt, .search-appliance-txt, .search-ustensil-txt  {
+.search-ingredients-txt, .search-appliances-txt, .search-ustensils-txt  {
     width: 163px;
     height: 36px;
     margin: 0px 15px;
@@ -187,7 +187,7 @@ main {
     border-radius: 2px;
 }
 
-.search-ingredient-btn, .search-appliance-btn, .search-ustensil-btn {
+.search-ingredients-btn, .search-appliances-btn, .search-ustensils-btn {
     width: 15px;
     height: 14px;
     position: absolute;
@@ -197,7 +197,7 @@ main {
     cursor: pointer;
 }
 
-#insistanteContentIngredient, #insistanteContentAppliance, #insistanteContentUstensil {
+#insistanteContentingredients, #insistanteContentappliances, #insistanteContentustensils {
     display: none;
     margin: 15px 0px 21px;
     font-family: 'manrope', sans-serif;
@@ -205,7 +205,7 @@ main {
     font-size: 14px;
 }
 
-#insistanteContentIngredient .contentBis, #insistanteContentAppliance .contentBis, #insistanteContentUstensil .contentBis {
+#insistanteContentingredients .contentBis, #insistanteContentappliances .contentBis, #insistanteContentustensils .contentBis {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
