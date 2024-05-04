@@ -6,9 +6,10 @@ const ctx = {
 
 function setupDropdown (item) {
   document.getElementById(item + "Btn").addEventListener("click", () => {
-    if(document.querySelector(".dropdown-content-" + item).style.display === "block"){
+
+    if (document.querySelector(".dropdown-content-" + item).style.display === "block") {
       closeList(item);
-    } else{
+    } else {
       openList(item);
     }
   });
