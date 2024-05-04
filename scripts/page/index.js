@@ -7,14 +7,13 @@ const recipes = [];
     recipes.push(...data.recipes);
 }
 
+/***** FONCTION DE FILTRAGE *****/
 function filterRecipes () {
     let _recipes = [...recipes];
 
     _recipes = filterByIngredients(_recipes);
     _recipes = filterByAppliances(_recipes);
     _recipes = filterByUstensils(_recipes);
-
-    //filterBySearch(_recipes);
 
     displayRecipes(_recipes);
 
@@ -25,11 +24,21 @@ function filterRecipes () {
     displayIngredients();
     displayAppliances();
     displayUstensils();
+
+    /***** CHAMP DE RECHERCHE *****/
+    const inputValue = document.querySelector(".search-txt").value.trim().toLowerCase();
+
+    if (inputValue.length >= 3) {
+        _recipes = _recipes.filter(recipe => {
+            const titleMatch = recipe.name.toLowerCase().includes(inputValue);
+            const ingredientsMatch = recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue));
+            const descriptionMatch = recipe.description.toLowerCase().includes(inputValue);
+            return titleMatch || ingredientsMatch || descriptionMatch;
+        });
+
+    }
 }
 
-/***** CHAMP DE RECHERCHE 
-function filterBySearch() {
-}*****/
 
 /***** FONCTIONS GENERALES UTILISEES POUR LES 3 FILTRES *****/
 function fillFilterList(data, label, moved) {
@@ -69,7 +78,7 @@ function moveItemToInsistante(item, moved, label) {
         insistanteClose.addEventListener('click', () => {
 			closeList(label);
             const insistanteContent = document.getElementById(`insistanteContent${label}`);
-            const tagsContent = Array.from(document.querySelectorAll('.tagsContent')).find(item => item.textContent === insistanteContent.textContent);
+            const tagsContent = Array.from(document.querySelectorAll('.tagsContent')).find(item => item.textContent === cloned.textContent);
             insistanteContent.removeChild(insistanteClose.parentElement);
             tagsContent.parentElement.removeChild(tagsContent);
             filterRecipes();
@@ -245,25 +254,10 @@ function initReferences() {
     vectorUstensils = document.querySelector('.vectorUstensil');
 
     // Recherche des recettes via la barre de recherche principale
-    document.querySelector('.search-txt').addEventListener('input', function() {
-        const inputValue = this.value.trim().toLowerCase();
-    
-        if (inputValue.length >= 3) {
-            const filteredRecipes = recipes.filter(recipe => {
-                const titleMatch = recipe.name.toLowerCase().includes(inputValue);
-                const ingredientsMatch = recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue));
-                const descriptionMatch = recipe.description.toLowerCase().includes(inputValue);
-                return titleMatch || ingredientsMatch || descriptionMatch;
-            });
-    
-            displayRecipes(filteredRecipes);
-        } else {
-            displayRecipes(recipes);
-        }
-    });
+    document.querySelector('.search-txt').addEventListener('input', filterRecipes);
 
     // Recherche des ingrédients, appareils et ustensiles via la barre de recherche du menu déroulant
-    document.querySelector('.search-ingredient-txt').addEventListener('input', function() {
+    document.querySelector('.search-ingredients-txt').addEventListener('input', function() {
         const inputValue = this.value.trim().toLowerCase();
 
         if (inputValue.length >= 3) {
@@ -277,11 +271,11 @@ function initReferences() {
         }
     });
 
-    document.querySelector('.search-appliance-txt').addEventListener('input', function() {
+    document.querySelector('.search-appliances-txt').addEventListener('input', function() {
         const inputValue = this.value.trim().toLowerCase();
 
         if (inputValue.length >= 3) {
-            const filteredAppliances = appliances.filter(appliance => {
+            const filteredAppliances = ctx.appliances.filter(appliance => {
                 return appliance.toLowerCase().includes(inputValue);
             });
 
@@ -291,11 +285,11 @@ function initReferences() {
         }
     });
 
-    document.querySelector('.search-ustensil-txt').addEventListener('input', function() {
+    document.querySelector('.search-ustensils-txt').addEventListener('input', function() {
         const inputValue = this.value.trim().toLowerCase();
 
         if (inputValue.length >= 3) {
-            const filteredUstensils = ustensils.filter(ustensil => {
+            const filteredUstensils = ctx.ustensils.filter(ustensil => {
                 return ustensil.toLowerCase().includes(inputValue);
             });
 

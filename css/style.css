@@ -215,11 +215,16 @@ main {
     background-color: #FFD15B;
 }
 
+.contentBis:hover {
+    font-weight: bold;
+}
+
 .insistantClose {
     margin: 2px 0px 0px 0px;
     width: 14px;
     height: 13px;
 }
+
 .content {
     display: flex;
     margin: 6px 0px 6px 16px;

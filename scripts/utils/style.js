@@ -42,6 +42,7 @@ function initEvent() {
 
 window.addEventListener("load", async() => {
   initEvent();
+  initReferences();
   await getRecipes();
   filterRecipes();
 });
