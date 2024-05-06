@@ -10,6 +10,18 @@ const recipes = [];
 /***** FONCTION DE FILTRAGE *****/
 function filterRecipes () {
     let _recipes = [...recipes];
+    const inputValue = document.querySelector(".search-txt").value.trim().toLowerCase();
+
+    /***** CHAMP DE RECHERCHE *****/
+    if (inputValue.length >= 3) {
+        _recipes = _recipes.filter(recipe => {
+            const titleMatch = recipe.name.toLowerCase().includes(inputValue);
+            const ingredientsMatch = recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue));
+            const descriptionMatch = recipe.description.toLowerCase().includes(inputValue);
+            return titleMatch || ingredientsMatch || descriptionMatch;
+        });
+
+    }
 
     _recipes = filterByIngredients(_recipes);
     _recipes = filterByAppliances(_recipes);
@@ -25,18 +37,7 @@ function filterRecipes () {
     displayAppliances();
     displayUstensils();
 
-    /***** CHAMP DE RECHERCHE *****/
-    const inputValue = document.querySelector(".search-txt").value.trim().toLowerCase();
-
-    if (inputValue.length >= 3) {
-        _recipes = _recipes.filter(recipe => {
-            const titleMatch = recipe.name.toLowerCase().includes(inputValue);
-            const ingredientsMatch = recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(inputValue));
-            const descriptionMatch = recipe.description.toLowerCase().includes(inputValue);
-            return titleMatch || ingredientsMatch || descriptionMatch;
-        });
-
-    }
+    
 }
 
 
