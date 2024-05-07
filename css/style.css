@@ -336,7 +336,6 @@ main {
     -webkit-box-orient: vertical;
     overflow: hidden;
     -webkit-line-clamp: 4;
-    max-height: 4 * 1.2em;
     font-family: "manrope", sans-serif;
     font-weight: 400;
     font-size: 14px;
