@@ -1,27 +1,19 @@
 function extractUstensils(_recipes) {
     ctx.ustensils = [];
 
-    for (let i = 0; i < _recipes.length; i++) {
-        const recipeUstensils = _recipes[i].ustensils;
+    _recipes.forEach(recipe => {
+        const recipeUstensils = recipe.ustensils;
 
-        for (let j = 0; j < recipeUstensils.length; j++) {
-            let found = false;
-            const currentUstensil = recipeUstensils[j].toLowerCase();
+        recipeUstensils.forEach(ustensil => {
+            const currentUstensil = ustensil.toLowerCase();
+            const isDuplicate = ctx.ustensils.some(ust => ust.toLowerCase() === currentUstensil);
 
-            for (let k = 0; k < ctx.ustensils.length; k++) {
-                if (currentUstensil === ctx.ustensils[k].toLowerCase()) {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found) {
-                // Vérifier également dans les ustensiles déplacés
+            if (!isDuplicate) {
                 const movedUstensils = Array.from(document.querySelectorAll('#insistanteContentustensils .content')).map(item => item.textContent.trim().toLowerCase());
                 if (!movedUstensils.includes(currentUstensil)) {
-                    ctx.ustensils.push(recipeUstensils[j]);
+                    ctx.ustensils.push(ustensil);
                 }
             }
-        }
-    }
+        });
+    });
 }

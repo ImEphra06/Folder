@@ -372,3 +372,12 @@ main {
     line-height: 19px;
     color: #7A7A7A;
 }
+
+/**** No Match *****/
+.no-match {
+    font-family: "manrope", sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    color: #7A7A7A;
+    padding-bottom: 170px;
+}

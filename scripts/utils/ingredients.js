@@ -1,33 +1,19 @@
 function extractIngredients(_recipes) {
     ctx.ingredients = [];
 
-    for (let i = 0; i < _recipes.length; i++) {
-        const recipeIngredients = _recipes[i].ingredients;
+    _recipes.forEach(recipe => {
+        recipe.ingredients.forEach(ingredient => {
+            const currentIngredient = ingredient.ingredient.toLowerCase();
+            const isDuplicate = ctx.ingredients.includes(currentIngredient);
 
-        for (let j = 0; j < recipeIngredients.length; j++) {
-            let found = false;
-            const currentIngredient = recipeIngredients[j].ingredient.toLowerCase();
+            if (!isDuplicate) {
+                const movedIngredients = Array.from(document.getElementById(`insistanteContentingredients`).children);
+                const isMoved = movedIngredients.some(item => item.textContent.toLowerCase() === currentIngredient);
 
-            for (let k = 0; k < ctx.ingredients.length; k++) {
-                if (ctx.ingredients[k].toLowerCase() === currentIngredient) {
-                    found = true;
-                    break;
+                if (!isMoved) {
+                    ctx.ingredients.push(currentIngredient);
                 }
             }
-
-            if (!found) {
-                const movedIngredients = document.getElementById(`insistanteContentingredients`).children;
-                for(let k = 0; k < movedIngredients.length; k++) {
-                    if (movedIngredients[k].textContent.toLowerCase() === currentIngredient) {
-                        found = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!found) {
-                ctx.ingredients.push(currentIngredient);
-            }
-        }
-    }
+        });
+    });
 }

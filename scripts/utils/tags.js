@@ -3,7 +3,7 @@ function createTag(tagName, type) {
 
   const tagsContent = document.createElement('article');
   tagsContent.classList.add('tagsContent');
-  
+
   const tag = document.createElement('div');
   tag.classList.add('tagName');
   tag.textContent = tagName;

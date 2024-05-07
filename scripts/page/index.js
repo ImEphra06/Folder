@@ -8,7 +8,7 @@ const recipes = [];
 }
 
 /***** FONCTION DE FILTRAGE *****/
-function filterRecipes () {
+function filterRecipes() {
     let _recipes = [...recipes];
     const inputValue = document.querySelector(".search-txt").value.trim().toLowerCase();
 
@@ -21,7 +21,14 @@ function filterRecipes () {
             return titleMatch || ingredientsMatch || descriptionMatch;
         });
 
+        const noMatch = document.querySelector('.no-match');
+        if (_recipes.length === 0) {
+            noMatch.textContent = "Aucune recette ne correspond à votre recherche...";
+        } else {
+            noMatch.textContent = "";
+        }
     }
+
 
     _recipes = filterByIngredients(_recipes);
     _recipes = filterByAppliances(_recipes);
@@ -36,8 +43,6 @@ function filterRecipes () {
     displayIngredients();
     displayAppliances();
     displayUstensils();
-
-    
 }
 
 
@@ -187,7 +192,7 @@ function recipeTemplate(data) {
         const article = document.createElement("article");
         article.className = 'card';
         
-        const cardContent = document.createElement("div")
+        const cardContent = document.createElement("div");
         cardContent.className = 'card-content';
 
         const recipesImg = document.createElement("img");
@@ -206,6 +211,7 @@ function recipeTemplate(data) {
 
         const ingredientsList = document.createElement("div");
         ingredientsList.className = 'ingredients-list';
+
         ingredients.forEach((ingredient) => {
 			const div = document.createElement("div");
 			div.classList.add("ingredient");
@@ -260,12 +266,12 @@ function initReferences() {
     // Recherche des ingrédients, appareils et ustensiles via la barre de recherche du menu déroulant
     document.querySelector('.search-ingredients-txt').addEventListener('input', function() {
         const inputValue = this.value.trim().toLowerCase();
-
+    
         if (inputValue.length >= 3) {
             const filteredIngredients = ctx.ingredients.filter(ingredient => {
                 return ingredient.toLowerCase().includes(inputValue);
             });
-
+    
             fillFilterList(filteredIngredients, "ingredients", document.getElementById(`insistanteContentingredients`).children);
         } else {
             displayIngredients();
@@ -274,7 +280,7 @@ function initReferences() {
 
     document.querySelector('.search-appliances-txt').addEventListener('input', function() {
         const inputValue = this.value.trim().toLowerCase();
-
+        
         if (inputValue.length >= 3) {
             const filteredAppliances = ctx.appliances.filter(appliance => {
                 return appliance.toLowerCase().includes(inputValue);
