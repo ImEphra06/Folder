@@ -200,14 +200,19 @@ function recipeTemplate(data) {
         recipesImg.setAttribute('aria-label', 'Recette - ' + name);
         const recipesTime = document.createElement("h2");
         recipesTime.textContent = `${time}min`;
+        recipesTime.setAttribute('aria-label', 'Durée de ' + time + ' minutes');
         const recipesName = document.createElement("h1");
         recipesName.textContent = name;
+        recipesName.setAttribute('aria-label', name);
         const recipesSTitle1 = document.createElement("h3");
         recipesSTitle1.textContent = `RECETTE`;
+        recipesSTitle1.setAttribute('aria-label', 'Recette');
         const recipesDescription = document.createElement("p");
         recipesDescription.textContent = description;
+        recipesDescription.setAttribute('aria-label', description);
         const recipesSTitle2 = document.createElement("h3");
         recipesSTitle2.textContent = `INGRÉDIENT`;
+        recipesSTitle2.setAttribute('aria-label', 'Ingrédient');
 
         const ingredientsList = document.createElement("div");
         ingredientsList.className = 'ingredients-list';
@@ -218,9 +223,11 @@ function recipeTemplate(data) {
 			const ingredientName = document.createElement("h4");
 			ingredientName.classList.add("ingredient-name");
 			ingredientName.textContent = ingredient.ingredient;
+            ingredientName.setAttribute('aria-label', ingredient.ingredient);
 			div.appendChild(ingredientName);
 			const ingredientUnit = document.createElement("h5");
 			ingredientUnit.textContent = ingredient.quantity + (ingredient.unit? " " + ingredient.unit:"");
+            ingredientUnit.setAttribute('aria-label', ingredient.quantity);
 			div.appendChild(ingredientUnit);
 			ingredientsList.appendChild(div);
 		});

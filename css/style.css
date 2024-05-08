@@ -72,6 +72,7 @@ header .search {
     padding-inline-start: 35px;
     padding-right: 70px;
     border: none;
+    cursor: text;
 }
 
 .search-btn {
@@ -185,6 +186,7 @@ main {
     padding-right: 28px;
     border: 1px solid #C6C6C6;
     border-radius: 2px;
+    cursor: text;
 }
 
 .search-ingredients-btn, .search-appliances-btn, .search-ustensils-btn {
