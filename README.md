@@ -15,8 +15,7 @@ Respecter le design de la maquette Figma.
 
 ## Informations complémentaires
 
-* Projet n°7 : les petits plat de la formation OpenClassrooms JS React.
-* Résultat JSBENCH
+* Projet n°7 : les petits plat de la formation OpenClassrooms
 * Validateur W3C
-* Fiche d'investigation lien
+* Fiche d'investigation
 > code réalisé sans framework JavaScript.
